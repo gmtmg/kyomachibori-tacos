@@ -4,12 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
 
+    // Check for touch devices
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) {
+        cursor.style.display = 'none';
+        document.body.style.cursor = 'auto';
+    }
+
     document.addEventListener('mousemove', (e) => {
+        if (isTouchDevice) return;
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
 
     const animateCursor = () => {
+        if (isTouchDevice) return;
         // Linear interpolation for smooth trailing
         cursorX += (mouseX - cursorX) * 0.15;
         cursorY += (mouseY - cursorY) * 0.15;

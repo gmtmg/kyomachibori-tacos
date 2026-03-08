@@ -389,8 +389,102 @@ body {
     transform: translateY(0);
 }
 
-@media (max-width: 1024px) {
-    .split-layout, .card-grid, .location-box-v2 { grid-template-columns: 1fr; }
-    .hero-img-mask { width: 100vw; right: 0; opacity: 0.3; }
-    .hero-title-v2 { font-size: 5rem; }
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    * {
+        cursor: auto !important; /* Disable custom cursor on touch devices */
+    }
+    
+    .cursor-follower {
+        display: none !important;
+    }
+
+    .header-content {
+        padding: 0 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-nav {
+        gap: 20px;
+    }
+
+    .hero-v2 {
+        padding: 0 5%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-img-mask {
+        width: 100vw;
+        right: 0;
+        height: 50vh;
+        top: 20%;
+        opacity: 0.4;
+        clip-path: none; /* simpler shape for mobile */
+    }
+
+    .hero-title-v2 {
+        font-size: clamp(3rem, 15vw, 5rem);
+        line-height: 1;
+    }
+
+    .hero-sub-v2 {
+        margin: 0 auto 40px;
+        font-size: 1rem;
+    }
+
+    .section-v2 {
+        padding: 80px 0;
+    }
+
+    .container {
+        padding: 0 25px;
+    }
+
+    .section-heading {
+        font-size: 3.5rem;
+    }
+
+    .split-layout {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+
+    .organic-blob {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+        font-size: 6rem;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .menu-card {
+        padding: 40px 30px;
+    }
+
+    .location-box-v2 {
+        grid-template-columns: 1fr;
+    }
+
+    .location-details {
+        padding: 40px 25px;
+    }
+
+    .location-map-v2 {
+        height: 300px;
+    }
+
+    .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        text-align: center;
+    }
 }
+
