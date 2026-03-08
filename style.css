@@ -1,0 +1,395 @@
+:root {
+    --bg-dark: #1A0F0A; /* Deep Cocoa Brown */
+    --text-light: #FDF5E6; /* Old Lace / Bone White */
+    --mexican-yellow: #FFD700;
+    --mexican-red: #CE1126;
+    --mexican-orange: #FF8C00;
+    --soft-gray: #a0a0a0;
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    font-family: 'Noto Serif JP', serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Noise Overlay - The "Good Feeling" Texture */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Custom Cursor - Magnetic Follower */
+.cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--mexican-yellow);
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    box-shadow: 0 0 20px var(--mexican-yellow);
+    transition: transform 0.1s var(--ease-out-expo);
+}
+
+/* Glass Header */
+.glass-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 30px 0;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    color: var(--mexican-yellow);
+}
+
+.logo-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--mexican-red);
+}
+
+.main-nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--mexican-yellow);
+    transition: width 0.4s var(--ease-out-expo);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section V2 - Cinematic */
+.hero-v2 {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 10%;
+    overflow: hidden;
+}
+
+.hero-visual-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-img-mask {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50vw;
+    height: 70vh;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    overflow: hidden;
+}
+
+.hero-img-inner {
+    width: 100%;
+    height: 100%;
+    background: url('img/wMYVcj7gqaZOncp1772990910_1772990914.png') no-repeat center center/cover;
+    filter: brightness(0.6) contrast(1.1);
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -2;
+}
+
+.shape-1 {
+    width: 40vw;
+    height: 40vw;
+    background: var(--mexican-red);
+    top: -10%;
+    left: -10%;
+    opacity: 0.3;
+}
+
+.shape-2 {
+    width: 30vw;
+    height: 30vw;
+    background: var(--mexican-yellow);
+    bottom: -10%;
+    right: 20%;
+    opacity: 0.2;
+}
+
+.hero-text-area {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+}
+
+.badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--mexican-yellow);
+    border-left: 2px solid var(--mexican-red);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.hero-title-v2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.85;
+    margin-bottom: 30px;
+}
+
+.t-line-2 {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-light);
+    display: block;
+}
+
+.hero-sub-v2 {
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin-bottom: 50px;
+    opacity: 0.8;
+}
+
+/* Sections V2 */
+.section-v2 {
+    padding: 160px 0;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.label {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.5em;
+    color: var(--mexican-red);
+    margin-bottom: 20px;
+}
+
+.section-heading {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 40px;
+    color: var(--mexican-yellow);
+}
+
+/* Split Layout */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 2;
+    opacity: 0.9;
+}
+
+.organic-blob {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--mexican-red), var(--mexican-orange));
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10rem;
+    box-shadow: 0 0 50px rgba(206, 17, 38, 0.4);
+    animation: blobMove 10s infinite alternate ease-in-out;
+}
+
+@keyframes blobMove {
+    0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    100% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
+}
+
+/* Menu Grid - High Contrast */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.menu-card {
+    position: relative;
+    padding: 60px 40px;
+    background: #251610;
+    border: 1px solid #3d241a;
+    transition: transform 0.5s var(--ease-out-expo);
+    overflow: hidden;
+}
+
+.menu-card:hover {
+    transform: translateY(-20px) rotate(2deg);
+    border-color: var(--mexican-yellow);
+}
+
+.card-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    color: var(--mexican-red);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.menu-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--mexican-yellow);
+}
+
+.card-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--text-light); }
+.tag { font-family: 'Syne', sans-serif; font-size: 0.6rem; padding: 5px 10px; border: 1px solid var(--mexican-red); color: var(--mexican-red); }
+
+/* Location Box - The Secret Spot */
+.location-box-v2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #000;
+    border: 1px solid var(--mexican-yellow);
+}
+
+.location-details { padding: 80px; }
+.addr { font-size: 2rem; margin: 30px 0; font-family: 'Noto Serif JP', serif; }
+
+.btn-outline {
+    text-decoration: none;
+    color: var(--mexican-yellow);
+    border: 1px solid var(--mexican-yellow);
+    padding: 15px 30px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    margin-right: 20px;
+    transition: 0.3s;
+}
+
+.btn-outline:hover { background: var(--mexican-yellow); color: var(--bg-dark); }
+
+.location-map-v2 {
+    background: linear-gradient(45deg, var(--mexican-red), var(--bg-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-inner {
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--text-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+}
+
+/* Footer */
+.footer-v2 { padding: 100px 0; border-top: 1px solid #333; }
+.footer-grid { display: flex; justify-content: space-between; align-items: flex-end; }
+.f-logo { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--mexican-yellow); }
+
+/* Animations */
+.animate-reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1.2s var(--ease-out-expo);
+}
+
+.animate-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+    .split-layout, .card-grid, .location-box-v2 { grid-template-columns: 1fr; }
+    .hero-img-mask { width: 100vw; right: 0; opacity: 0.3; }
+    .hero-title-v2 { font-size: 5rem; }
+}
