@@ -203,9 +203,10 @@ body {
 
 .hero-title-v2 {
     font-family: 'Bebas Neue', cursive;
-    font-size: clamp(4rem, 12vw, 10rem);
-    line-height: 0.85;
+    font-size: clamp(3.5rem, 10vw, 8.5rem); /* 少しサイズを抑えて確実に見切れないように調整 */
+    line-height: 1.1; /* 見切れ防止のため余裕を持たせる */
     margin-bottom: 30px;
+    padding: 10px 0; /* 上下の見切れを防止 */
 }
 
 .t-line-2 {
