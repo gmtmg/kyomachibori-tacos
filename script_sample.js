@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.trigger-section');
     const tortilla = document.getElementById('tortilla');
-    const cabbages = document.querySelectorAll('.cabbage');
-    const meatsAndSalsas = document.querySelectorAll('.meat, .salsa');
+    const cabbages = document.querySelectorAll('.cabbage-leaf');
+    const meatsAndSalsas = document.querySelectorAll('.meat-chunk, .salsa-drop');
     const finishText = document.getElementById('finish-text');
 
-    // 最初に全ての具材をリセット状態に
+    // Reset All Ingredients
     const resetIngredients = () => {
         tortilla.classList.remove('dropped');
         cabbages.forEach(c => c.classList.remove('dropped'));
@@ -17,14 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrolled = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // ステージ1：トルティーヤ（スクロールが1画面分を超えたら）
+        // Stage 1: Tortilla (Step 1)
         if (scrolled > vh * 0.8) {
             tortilla.classList.add('dropped');
         } else {
             tortilla.classList.remove('dropped');
         }
 
-        // ステージ2：キャベツ（スクロールが2画面分を超えたら）
+        // Stage 2: Cabbage Leaves (Step 2)
         if (scrolled > vh * 1.8) {
             cabbages.forEach((el, i) => {
                 setTimeout(() => el.classList.add('dropped'), i * 150);
@@ -33,23 +33,27 @@ document.addEventListener('DOMContentLoaded', () => {
             cabbages.forEach(el => el.classList.remove('dropped'));
         }
 
-        // ステージ3：肉とサルサ（スクロールが3画面分を超えたら）
+        // Stage 3: Meat Chunks & Salsa Drops (Step 3)
         if (scrolled > vh * 2.8) {
             meatsAndSalsas.forEach((el, i) => {
-                setTimeout(() => el.classList.add('dropped'), i * 200);
+                setTimeout(() => el.classList.add('dropped'), i * 180);
             });
         } else {
             meatsAndSalsas.forEach(el => el.classList.remove('dropped'));
         }
 
-        // ステージ4：完成（スクロールが4画面分を超えたら）
+        // Stage 4: Finish Celebration (Step 4)
         if (scrolled > vh * 3.8) {
             finishText.classList.add('visible');
+            // Subtle celebration shake for the whole scene
+            const stage = document.querySelector('.taco-stage');
+            stage.style.transform = `translateY(${-Math.sin(scrolled * 0.01) * 8}px)`;
         } else {
             finishText.classList.remove('visible');
+            document.querySelector('.taco-stage').style.transform = 'translateY(0)';
         }
 
-        // ラベル（ステップ表示）の制御
+        // Step Label Feedback
         sections.forEach(sec => {
             const rect = sec.getBoundingClientRect();
             const label = sec.querySelector('.label');
@@ -63,6 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 読み込み時に一度実行して初期状態をセット
+    // Initialize
     resetIngredients();
 });
