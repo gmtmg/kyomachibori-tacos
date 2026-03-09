@@ -1,0 +1,168 @@
+:root {
+    --bg-dark: #1A0F0A;
+    --mexican-yellow: #FFD700;
+    --mexican-red: #CE1126;
+    --text-light: #FDF5E6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Syne', sans-serif;
+    height: 600vh; /* Long scroll for interaction */
+    overflow-x: hidden;
+}
+
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* TACO COOKING STAGE */
+.taco-stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.plate {
+    width: 400px;
+    height: 15px;
+    background: linear-gradient(to right, #222, #444, #222);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 25%;
+    box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+}
+
+/* INGREDIENTS */
+.ingredient {
+    position: absolute;
+    font-size: 8rem;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
+    opacity: 0;
+    transform: translateY(-120vh) rotate(45deg); /* Start from far top */
+}
+
+/* Stage: Tortilla */
+.tortilla.dropped {
+    opacity: 1;
+    transform: translateY(12vh) rotate(0deg) scale(2.5);
+    z-index: 1;
+}
+
+/* Stage: Cabbage */
+.cabbage-container { position: absolute; width: 300px; height: 300px; top: 35%; }
+.cabbage { font-size: 3rem; }
+
+.cabbage.dropped { opacity: 1; z-index: 2; }
+.c1.dropped { transform: translate(-80px, 0) rotate(15deg); }
+.c2.dropped { transform: translate(80px, 10px) rotate(-10deg); }
+.c3.dropped { transform: translate(0, -10px) rotate(45deg); }
+.c4.dropped { transform: translate(40px, -20px) rotate(-30deg); }
+
+/* Stage: Meat & Salsa */
+.meat-salsa-container { position: absolute; width: 250px; height: 250px; top: 40%; }
+.meat { font-size: 4rem; z-index: 3; }
+.salsa { font-size: 3rem; z-index: 4; }
+
+.dropped.meat, .dropped.salsa { opacity: 1; }
+.m1.dropped { transform: translate(-40px, 0) rotate(0deg); }
+.m2.dropped { transform: translate(40px, 10px) rotate(10deg); }
+.s1.dropped { transform: translate(0, -20px) scale(1.5) rotate(0deg); }
+.s2.dropped { transform: translate(20px, 15px) rotate(-15deg); }
+
+/* FINISH TEXT */
+.complete-message {
+    position: absolute;
+    top: 20%;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s var(--ease-out-expo);
+    z-index: 100;
+}
+
+.complete-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.complete-message h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 6rem;
+    color: var(--mexican-yellow);
+    text-shadow: 4px 4px var(--mexican-red);
+}
+
+/* SCROLL TRIGGER SECTIONS */
+.trigger-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-prompt {
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    animation: bounce 2s infinite;
+}
+
+.label {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    color: var(--mexican-red);
+    background: var(--mexican-yellow);
+    padding: 10px 40px;
+    transform: rotate(-3deg);
+    opacity: 0.3;
+}
+
+.back-home {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.back-home a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.8rem;
+    border: 1px solid var(--text-light);
+    padding: 10px 20px;
+    transition: background 0.3s;
+}
+
+.back-home a:hover { background: var(--mexican-red); border-color: var(--mexican-red); }
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 768px) {
+    .plate { width: 300px; }
+    .complete-message h2 { font-size: 4rem; }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE TACO BUILDER | KYOMACHIBORI TACOS</title>
+    <link rel="stylesheet" href="style_sample.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@800&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+
+    <!-- Fixed Cooking Stage -->
+    <div class="taco-stage">
+        <div class="plate"></div>
+        
+        <!-- Ingredients (Initially hidden or off-screen) -->
+        <div class="ingredient tortilla" id="tortilla">🌮</div>
+        
+        <div class="cabbage-container" id="cabbage-group">
+            <span class="ingredient cabbage c1">🥬</span>
+            <span class="ingredient cabbage c2">🥬</span>
+            <span class="ingredient cabbage c3">🥬</span>
+            <span class="ingredient cabbage c4">🥬</span>
+        </div>
+
+        <div class="meat-salsa-container" id="meat-group">
+            <span class="ingredient meat m1">🍖</span>
+            <span class="ingredient meat m2">🍖</span>
+            <span class="ingredient salsa s1">🍅</span>
+            <span class="ingredient salsa s2">🌶️</span>
+        </div>
+
+        <div class="complete-message" id="finish-text">
+            <h2>MASTERPIECE!</h2>
+            <p>京町堀202、究極の一皿。</p>
+        </div>
+    </div>
+
+    <!-- Scroll Triggers -->
+    <section class="trigger-section" id="step-0">
+        <div class="scroll-prompt">SCROLL TO COOK</div>
+    </section>
+    
+    <section class="trigger-section" id="step-1">
+        <div class="label">STEP 01: THE TORTILLA</div>
+    </section>
+
+    <section class="trigger-section" id="step-2">
+        <div class="label">STEP 02: FRESH CABBAGE</div>
+    </section>
+
+    <section class="trigger-section" id="step-3">
+        <div class="label">STEP 03: MEAT & SALSA</div>
+    </section>
+
+    <section class="trigger-section" id="step-4">
+        <div class="label">FINISH: THE ART</div>
+    </section>
+
+    <div class="back-home">
+        <a href="index.html">BACK TO SITE</a>
+    </div>
+
+    <script src="script_sample.js"></script>
+</body>
+</html>
