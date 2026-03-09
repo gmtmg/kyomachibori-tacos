@@ -1,8 +1,10 @@
 :root {
-    --bg-dark: #1A0F0A;
+    --bg-dark: #0F0906; /* より深いダークブラウン */
     --mexican-yellow: #FFD700;
     --mexican-red: #CE1126;
     --text-light: #FDF5E6;
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --bounce-hard: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 * {
@@ -26,7 +28,7 @@ body {
     width: 100%;
     height: 100%;
     background-image: url('https://www.transparenttextures.com/patterns/p6.png');
-    opacity: 0.1;
+    opacity: 0.12;
     pointer-events: none;
     z-index: 9999;
 }
@@ -45,79 +47,79 @@ body {
     z-index: 10;
 }
 
-.plate-v2 {
+.plate-v3 {
     position: absolute;
-    bottom: 15%;
-    width: 500px;
-    height: 80px;
+    bottom: 12%;
+    width: 600px;
+    height: 120px;
     z-index: 1;
 }
 
-/* INGREDIENT SVG SYSTEM */
+/* INGREDIENT SVG SYSTEM - Heavy Physics */
 .ingredient-svg {
     position: absolute;
     opacity: 0;
-    transform: translateY(-150vh) rotate(180deg);
-    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s;
+    transform: translateY(-120vh) rotate(15deg);
+    transition: transform 1.2s var(--bounce-hard), opacity 0.4s ease;
 }
 
-/* Stage 1: Tortilla */
-.tortilla-wrap {
-    width: 450px;
-    height: 450px;
-    top: 45%;
+/* Stage 1: Tortilla - The Foundation */
+.tortilla-v3 {
+    width: 500px;
+    height: 500px;
+    top: 48%;
 }
 
-.tortilla-wrap.dropped {
+.tortilla-v3.dropped {
     opacity: 1;
-    transform: translateY(-50%) rotate(0deg) scale(1);
+    transform: translateY(-50%) rotate(0deg) scale(1.1);
     z-index: 5;
 }
 
-/* Stage 2: Cabbage */
-.cabbage-group-svg {
+/* Stage 2: Cabbage - Precise Shreds */
+.cabbage-v3-group {
     position: absolute;
-    top: 40%;
-    width: 350px;
-    height: 350px;
+    top: 42%;
+    width: 400px;
+    height: 400px;
     z-index: 10;
 }
 
-.cabbage-leaf { width: 120px; height: 30px; }
-.cabbage-leaf.dropped { opacity: 1; }
+.cab-leaf { width: 150px; height: 30px; }
+.cab-leaf.dropped { opacity: 1; }
 
-.c1.dropped { transform: translate(-80px, 40px) rotate(15deg); }
-.c2.dropped { transform: translate(60px, 60px) rotate(-10deg); }
-.c3.dropped { transform: translate(10px, 20px) rotate(45deg); }
-.c4.dropped { transform: translate(-20px, 80px) rotate(-30deg); }
+.cl1.dropped { transform: translate(-100px, 40px) rotate(12deg); }
+.cl2.dropped { transform: translate(80px, 60px) rotate(-8deg); }
+.cl3.dropped { transform: translate(15px, 20px) rotate(35deg); }
+.cl4.dropped { transform: translate(-30px, 85px) rotate(-20deg); }
 
-/* Stage 3: Meat & Salsa */
-.meat-salsa-group-svg {
+/* Stage 3: Meat & Salsa - Rich Layers */
+.protein-v3-group {
     position: absolute;
-    top: 45%;
-    width: 250px;
-    height: 250px;
+    top: 46%;
+    width: 300px;
+    height: 300px;
     z-index: 15;
 }
 
-.meat-chunk { width: 80px; height: 60px; }
-.salsa-drop { width: 50px; height: 50px; }
+.meat-v3 { width: 120px; height: 100px; }
+.salsa-v3 { width: 70px; height: 70px; }
 
-.dropped.meat-chunk, .dropped.salsa-drop { opacity: 1; }
+.dropped.meat-v3, .dropped.salsa-v3 { opacity: 1; }
 
-.m1.dropped { transform: translate(-30px, 10px) rotate(0deg); }
-.m2.dropped { transform: translate(40px, 20px) rotate(10deg); }
-.s1.dropped { transform: translate(0, -15px) scale(1.5) rotate(0deg); }
-.s2.dropped { transform: translate(20px, 30px) rotate(-15deg); }
+.mv1.dropped { transform: translate(-45px, 15px) rotate(-5deg); }
+.mv2.dropped { transform: translate(50px, 30px) rotate(8deg); }
+.sv1.dropped { transform: translate(5px, -10px) scale(1.6) rotate(0deg); }
+.sv2.dropped { transform: translate(30px, 40px) rotate(-12deg); }
 
-/* Message */
+/* Finish Message */
 .complete-message {
     position: absolute;
-    top: 15%;
+    top: 12%;
     text-align: center;
     opacity: 0;
-    transform: translateY(40px);
-    transition: 1s ease-out;
+    transform: translateY(30px);
+    transition: 1.2s var(--ease-out-expo);
     z-index: 100;
 }
 
@@ -125,24 +127,69 @@ body {
 
 .complete-message h2 {
     font-family: 'Bebas Neue', cursive;
-    font-size: 7rem;
+    font-size: 8rem;
     color: var(--mexican-yellow);
-    text-shadow: 6px 6px 0px var(--mexican-red);
+    letter-spacing: 0.05em;
+    text-shadow: 8px 8px 0px var(--mexican-red);
 }
 
-/* Guides */
-.trigger-section { height: 100vh; display: flex; align-items: center; justify-content: center; }
-.scroll-prompt { font-size: 1.2rem; letter-spacing: 0.8em; color: var(--mexican-yellow); animation: bounce 2s infinite; }
-.label { font-family: 'Bebas Neue', cursive; font-size: 3rem; color: var(--mexican-red); background: var(--mexican-yellow); padding: 10px 50px; transform: rotate(-3deg); opacity: 0; transition: 0.6s; }
-.label.visible { opacity: 1; transform: rotate(0deg) scale(1.2); }
+.complete-message p {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    color: var(--text-light);
+    font-weight: 700;
+    opacity: 0.8;
+}
 
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+/* UI Elements */
+.trigger-section { height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+/* ふわふわを抑えた洗練されたプロンプト */
+.scroll-prompt-v3 {
+    font-size: 1rem;
+    letter-spacing: 1em;
+    color: var(--mexican-yellow);
+    animation: fadePulse 3s infinite ease-in-out;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+}
+
+@keyframes fadePulse {
+    0%, 100% { opacity: 0.2; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(-5px); }
+}
+
+.label-v3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4rem;
+    color: var(--mexican-red);
+    background: var(--mexican-yellow);
+    padding: 10px 60px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.8s var(--ease-out-expo);
+}
+
+.label-v3.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .back-home { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
-.back-home a { color: var(--text-light); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--text-light); padding: 12px 24px; }
+.back-home a { 
+    color: var(--text-light); 
+    text-decoration: none; 
+    font-size: 0.7rem; 
+    letter-spacing: 0.2em;
+    border: 1px solid rgba(253, 245, 230, 0.3); 
+    padding: 15px 30px;
+    background: rgba(15, 9, 6, 0.8);
+    backdrop-filter: blur(5px);
+}
 
 @media (max-width: 768px) {
-    .plate-v2 { width: 320px; }
-    .tortilla-wrap { width: 300px; height: 300px; }
+    .plate-v3 { width: 340px; }
+    .tortilla-v3 { width: 320px; height: 320px; }
     .complete-message h2 { font-size: 4rem; }
+    .label-v3 { font-size: 2.5rem; padding: 10px 30px; }
 }
