@@ -15,7 +15,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     font-family: 'Syne', sans-serif;
-    height: 600vh; /* Long scroll for interaction */
+    height: 600vh; /* 長いスクロールを確保 */
     overflow-x: hidden;
 }
 
@@ -31,7 +31,7 @@ body {
     z-index: 9999;
 }
 
-/* TACO COOKING STAGE */
+/* 調理ステージ */
 .taco-stage {
     position: fixed;
     top: 0;
@@ -45,61 +45,85 @@ body {
     z-index: 10;
 }
 
+/* 皿 */
 .plate {
     width: 400px;
-    height: 15px;
-    background: linear-gradient(to right, #222, #444, #222);
+    height: 20px;
+    background: linear-gradient(to bottom, #333, #111);
     border-radius: 50%;
     position: absolute;
-    bottom: 25%;
-    box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+    bottom: 20%;
+    box-shadow: 0 40px 60px rgba(0,0,0,0.8);
+    border: 2px solid #444;
 }
 
-/* INGREDIENTS */
+/* 具材の基本（最初は画面外の上空へ） */
 .ingredient {
     position: absolute;
     font-size: 8rem;
-    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
     opacity: 0;
-    transform: translateY(-120vh) rotate(45deg); /* Start from far top */
+    /* 画面の遥か上空に配置 */
+    transform: translateY(-200vh) rotate(45deg); 
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
+    user-select: none;
 }
 
-/* Stage: Tortilla */
+/* トルティーヤ */
 .tortilla.dropped {
     opacity: 1;
-    transform: translateY(12vh) rotate(0deg) scale(2.5);
+    /* 皿の少し上に着地 */
+    transform: translateY(15vh) rotate(0deg) scale(2.5);
     z-index: 1;
 }
 
-/* Stage: Cabbage */
-.cabbage-container { position: absolute; width: 300px; height: 300px; top: 35%; }
-.cabbage { font-size: 3rem; }
+/* キャベツ */
+.cabbage-container {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.cabbage.dropped { opacity: 1; z-index: 2; }
-.c1.dropped { transform: translate(-80px, 0) rotate(15deg); }
-.c2.dropped { transform: translate(80px, 10px) rotate(-10deg); }
-.c3.dropped { transform: translate(0, -10px) rotate(45deg); }
-.c4.dropped { transform: translate(40px, -20px) rotate(-30deg); }
+.cabbage { font-size: 4rem; }
+.cabbage.dropped { opacity: 1; z-index: 5; }
 
-/* Stage: Meat & Salsa */
-.meat-salsa-container { position: absolute; width: 250px; height: 250px; top: 40%; }
-.meat { font-size: 4rem; z-index: 3; }
-.salsa { font-size: 3rem; z-index: 4; }
+/* 個別に散らす */
+.c1.dropped { transform: translate(-80px, 30px) rotate(15deg); }
+.c2.dropped { transform: translate(80px, 40px) rotate(-10deg); }
+.c3.dropped { transform: translate(0, 20px) rotate(45deg); }
+.c4.dropped { transform: translate(40px, 10px) rotate(-30deg); }
+
+/* ひき肉とサルサ */
+.meat-salsa-container {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meat { font-size: 5rem; z-index: 10; }
+.salsa { font-size: 4rem; z-index: 15; }
 
 .dropped.meat, .dropped.salsa { opacity: 1; }
-.m1.dropped { transform: translate(-40px, 0) rotate(0deg); }
-.m2.dropped { transform: translate(40px, 10px) rotate(10deg); }
-.s1.dropped { transform: translate(0, -20px) scale(1.5) rotate(0deg); }
-.s2.dropped { transform: translate(20px, 15px) rotate(-15deg); }
+.m1.dropped { transform: translate(-30px, 10px) rotate(0deg); }
+.m2.dropped { transform: translate(30px, 20px) rotate(10deg); }
+.s1.dropped { transform: translate(0, -10px) scale(1.5) rotate(0deg); }
+.s2.dropped { transform: translate(15px, 25px) rotate(-15deg); }
 
-/* FINISH TEXT */
+/* 完成メッセージ */
 .complete-message {
     position: absolute;
-    top: 20%;
+    top: 15%;
     text-align: center;
     opacity: 0;
-    transform: translateY(20px);
-    transition: 1s var(--ease-out-expo);
+    transform: translateY(50px);
+    transition: 1s ease-out;
     z-index: 100;
 }
 
@@ -115,7 +139,7 @@ body {
     text-shadow: 4px 4px var(--mexican-red);
 }
 
-/* SCROLL TRIGGER SECTIONS */
+/* スクロールガイド */
 .trigger-section {
     height: 100vh;
     display: flex;
@@ -124,19 +148,27 @@ body {
 }
 
 .scroll-prompt {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     letter-spacing: 0.5em;
+    color: var(--mexican-yellow);
+    text-shadow: 0 0 10px var(--mexican-red);
     animation: bounce 2s infinite;
 }
 
 .label {
     font-family: 'Bebas Neue', cursive;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--mexican-red);
     background: var(--mexican-yellow);
-    padding: 10px 40px;
+    padding: 10px 50px;
     transform: rotate(-3deg);
-    opacity: 0.3;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.label.visible {
+    opacity: 1;
+    transform: rotate(0deg) scale(1.1);
 }
 
 .back-home {
@@ -151,18 +183,18 @@ body {
     text-decoration: none;
     font-size: 0.8rem;
     border: 1px solid var(--text-light);
-    padding: 10px 20px;
-    transition: background 0.3s;
+    padding: 12px 24px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
 }
-
-.back-home a:hover { background: var(--mexican-red); border-color: var(--mexican-red); }
 
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-30px); }
 }
 
 @media (max-width: 768px) {
-    .plate { width: 300px; }
-    .complete-message h2 { font-size: 4rem; }
+    .plate { width: 280px; }
+    .complete-message h2 { font-size: 3.5rem; }
+    .ingredient { font-size: 5rem; }
 }

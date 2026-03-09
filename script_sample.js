@@ -5,20 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const meatsAndSalsas = document.querySelectorAll('.meat, .salsa');
     const finishText = document.getElementById('finish-text');
 
+    // 最初に全ての具材をリセット状態に
+    const resetIngredients = () => {
+        tortilla.classList.remove('dropped');
+        cabbages.forEach(c => c.classList.remove('dropped'));
+        meatsAndSalsas.forEach(m => m.classList.remove('dropped'));
+        finishText.classList.remove('visible');
+    };
+
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // Stage 1: Tortilla Drop (Step 1)
+        // ステージ1：トルティーヤ（スクロールが1画面分を超えたら）
         if (scrolled > vh * 0.8) {
             tortilla.classList.add('dropped');
-            tortilla.style.opacity = '1';
         } else {
             tortilla.classList.remove('dropped');
-            tortilla.style.opacity = '0';
         }
 
-        // Stage 2: Cabbage Drops (Step 2)
+        // ステージ2：キャベツ（スクロールが2画面分を超えたら）
         if (scrolled > vh * 1.8) {
             cabbages.forEach((el, i) => {
                 setTimeout(() => el.classList.add('dropped'), i * 150);
@@ -27,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cabbages.forEach(el => el.classList.remove('dropped'));
         }
 
-        // Stage 3: Meat & Salsa (Step 3)
+        // ステージ3：肉とサルサ（スクロールが3画面分を超えたら）
         if (scrolled > vh * 2.8) {
             meatsAndSalsas.forEach((el, i) => {
                 setTimeout(() => el.classList.add('dropped'), i * 200);
@@ -36,27 +42,27 @@ document.addEventListener('DOMContentLoaded', () => {
             meatsAndSalsas.forEach(el => el.classList.remove('dropped'));
         }
 
-        // Stage 4: Finish (Step 4)
+        // ステージ4：完成（スクロールが4画面分を超えたら）
         if (scrolled > vh * 3.8) {
             finishText.classList.add('visible');
-            // Slight celebration bounce for the whole taco
-            const stage = document.querySelector('.taco-stage');
-            stage.style.transform = `translateY(${-Math.sin(scrolled * 0.01) * 10}px)`;
         } else {
             finishText.classList.remove('visible');
         }
 
-        // Dynamic Label Opacity
+        // ラベル（ステップ表示）の制御
         sections.forEach(sec => {
             const rect = sec.getBoundingClientRect();
             const label = sec.querySelector('.label');
-            if (label && rect.top < vh / 2 && rect.bottom > vh / 2) {
-                label.style.opacity = '1';
-                label.style.transform = 'scale(1.1) rotate(0deg)';
-            } else if (label) {
-                label.style.opacity = '0.3';
-                label.style.transform = 'scale(1.0) rotate(-3deg)';
+            if (label) {
+                if (rect.top < vh * 0.5 && rect.bottom > vh * 0.5) {
+                    label.classList.add('visible');
+                } else {
+                    label.classList.remove('visible');
+                }
             }
         });
     });
+
+    // 読み込み時に一度実行して初期状態をセット
+    resetIngredients();
 });
