@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.trigger-section');
     const tortilla = document.getElementById('tortilla');
-    // 新しいクラス名に合わせてセレクタを修正
-    const cabbages = document.querySelectorAll('.cab-leaf');
-    const meatsAndSalsas = document.querySelectorAll('.meat-v3, .salsa-v3');
+    // 増強したパーツに対応するセレクタ
+    const cabbages = document.querySelectorAll('.cab-v4');
+    const meatsAndSalsas = document.querySelectorAll('.meat-v4, .salsa-v4');
     const finishText = document.getElementById('finish-text');
 
-    // リセット処理
     const resetIngredients = () => {
         if(tortilla) tortilla.classList.remove('dropped');
         cabbages.forEach(c => c.classList.remove('dropped'));
@@ -25,13 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if(tortilla) tortilla.classList.remove('dropped');
         }
 
-        // Stage 2: Cabbage Leaves (Step 2)
+        // Stage 2: Cabbage Drops (Step 2)
         if (scrolled > vh * 1.8) {
             cabbages.forEach((el, i) => {
-                // 少し時間差をつけて落とす
                 setTimeout(() => {
                     if (window.pageYOffset > vh * 1.8) el.classList.add('dropped');
-                }, i * 100);
+                }, i * 60); // より細かくバラバラと
             });
         } else {
             cabbages.forEach(el => el.classList.remove('dropped'));
@@ -42,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             meatsAndSalsas.forEach((el, i) => {
                 setTimeout(() => {
                     if (window.pageYOffset > vh * 2.8) el.classList.add('dropped');
-                }, i * 120);
+                }, i * 80);
             });
         } else {
             meatsAndSalsas.forEach(el => el.classList.remove('dropped'));
@@ -51,14 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Stage 4: Finish (Step 4)
         if (scrolled > vh * 3.8) {
             if(finishText) finishText.classList.add('visible');
+            const stage = document.querySelector('.taco-stage');
+            stage.style.transform = `translateY(${-Math.sin(scrolled * 0.01) * 10}px)`;
         } else {
             if(finishText) finishText.classList.remove('visible');
+            const stage = document.querySelector('.taco-stage');
+            if(stage) stage.style.transform = 'translateY(0)';
         }
 
         // Step Labels
         sections.forEach(sec => {
             const rect = sec.getBoundingClientRect();
-            const label = sec.querySelector('.label-v3');
+            const label = sec.querySelector('.label-v4');
             if (label) {
                 if (rect.top < vh * 0.6 && rect.bottom > vh * 0.4) {
                     label.classList.add('visible');

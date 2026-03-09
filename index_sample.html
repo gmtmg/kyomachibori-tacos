@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE CRAFT TACO BUILDER | KYOMACHIBORI</title>
+    <title>THE ULTIMATE CRAFT TACO | KYOMACHIBORI</title>
     <link rel="stylesheet" href="style_sample.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,107 +13,88 @@
     <div class="noise-overlay"></div>
 
     <div class="taco-stage">
-        <!-- 高級感のあるセラミックプレート -->
+        <!-- プレート -->
         <div class="plate-v3">
             <svg viewBox="0 0 500 100">
-                <defs>
-                    <radialGradient id="plateShadow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="rgba(0,0,0,0.6)" />
-                        <stop offset="100%" stop-color="rgba(0,0,0,0)" />
-                    </radialGradient>
-                </defs>
-                <ellipse cx="250" cy="70" rx="220" ry="30" fill="url(#plateShadow)" />
-                <ellipse cx="250" cy="50" rx="200" ry="35" fill="#1A1A1A" stroke="#333" stroke-width="1" />
-                <ellipse cx="250" cy="45" rx="185" ry="30" fill="#222" stroke="#444" stroke-width="0.5" />
+                <ellipse cx="250" cy="70" rx="230" ry="35" fill="rgba(0,0,0,0.7)" filter="blur(10px)" />
+                <ellipse cx="250" cy="50" rx="210" ry="40" fill="#111" stroke="#222" stroke-width="2" />
             </svg>
         </div>
         
-        <!-- 素材1: ハンドクラフト・トルティーヤ -->
-        <div class="ingredient-svg tortilla-v3" id="tortilla">
+        <!-- 生地: 極上のハンドクラフト・トルティーヤ -->
+        <div class="ingredient-svg tortilla-v4" id="tortilla">
             <svg viewBox="0 0 300 300">
                 <defs>
-                    <radialGradient id="cornGrad" cx="45%" cy="45%" r="60%">
-                        <stop offset="0%" stop-color="#FFD766" />
-                        <stop offset="70%" stop-color="#EBB328" />
-                        <stop offset="100%" stop-color="#D49A00" />
+                    <radialGradient id="tortillaMain" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#FFD152" />
+                        <stop offset="85%" stop-color="#EBB328" />
+                        <stop offset="100%" stop-color="#C58E00" />
                     </radialGradient>
-                    <filter id="grain">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
-                        <feDiffuseLighting in="noise" lighting-color="#D49A00" surfaceScale="1">
-                            <feDistantLight azimuth="45" elevation="35" />
-                        </feDiffuseLighting>
+                    <filter id="roughness">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" />
+                        <feComposite in="SourceGraphic" in2="noise" operator="in" />
                     </filter>
                 </defs>
-                <!-- 生地本体 -->
-                <path d="M150,20 C200,22 260,60 275,120 C285,180 230,260 150,275 C70,285 20,220 25,150 C30,80 80,18 150,20" fill="url(#cornGrad)" />
-                <!-- 質感のテクスチャ -->
-                <path d="M150,20 C200,22 260,60 275,120 C285,180 230,260 150,275 C70,285 20,220 25,150 C30,80 80,18 150,20" fill="#D49A00" opacity="0.1" filter="url(#grain)" />
-                <!-- 焦げ目（ディテール） -->
-                <circle cx="100" cy="80" r="12" fill="#8B4513" opacity="0.15" />
-                <circle cx="180" cy="160" r="8" fill="#5D2E0C" opacity="0.2" />
-                <path d="M210,100 Q220,110 215,125" stroke="#8B4513" stroke-width="3" fill="none" opacity="0.1" stroke-linecap="round" />
+                <path d="M150,25 C210,25 275,70 275,130 C275,190 220,270 150,275 C80,280 25,220 25,140 C25,70 90,25 150,25" fill="url(#tortillaMain)" stroke="#D49A00" stroke-width="1" />
+                <path d="M150,25 C210,25 275,70 275,130 C275,190 220,270 150,275 C80,280 25,220 25,140 C25,70 90,25 150,25" fill="#8B4513" opacity="0.08" filter="url(#roughness)" />
+                <!-- 焦げ目 -->
+                <ellipse cx="120" cy="100" rx="15" ry="10" fill="#5D2E0C" opacity="0.2" />
+                <ellipse cx="190" cy="180" rx="20" ry="12" fill="#8B4513" opacity="0.15" />
+                <path d="M60,150 Q80,170 70,190" stroke="#5D2E0C" stroke-width="2" fill="none" opacity="0.1" />
             </svg>
         </div>
         
-        <!-- 素材2: 鮮やかな千切りキャベツ -->
-        <div class="cabbage-v3-group" id="cabbage-group">
-            <div class="ingredient-svg cab-leaf cl1">
-                <svg viewBox="0 0 120 20"><path d="M5,15 C40,5 80,5 115,12" stroke="#E0FFB3" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M5,15 C40,5 80,5 115,12" stroke="#99CC33" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-            </div>
-            <div class="ingredient-svg cab-leaf cl2">
-                <svg viewBox="0 0 120 20"><path d="M10,5 C50,18 90,8 110,10" stroke="#CCFF99" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
-            </div>
-            <div class="ingredient-svg cab-leaf cl3">
-                <svg viewBox="0 0 120 20"><path d="M5,10 Q60,0 115,15" stroke="#A8E05F" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M5,10 Q60,0 115,15" stroke="#FFF" stroke-width="1" fill="none" opacity="0.3"/></svg>
-            </div>
-            <div class="ingredient-svg cab-leaf cl4">
-                <svg viewBox="0 0 120 20"><path d="M15,18 Q70,5 105,12" stroke="#7CB342" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
-            </div>
+        <!-- 大量の千切りキャベツ (12本) -->
+        <div class="cabbage-v4-group" id="cabbage-group">
+            <div class="ingredient-svg cab-v4 cl1"><svg viewBox="0 0 100 20"><path d="M0,10 Q50,0 100,5" stroke="#E0FFB3" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl2"><svg viewBox="0 0 100 20"><path d="M0,5 Q50,15 100,10" stroke="#A8E05F" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl3"><svg viewBox="0 0 100 20"><path d="M0,15 Q50,5 100,15" stroke="#CCFF99" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl4"><svg viewBox="0 0 100 20"><path d="M10,0 Q60,20 100,0" stroke="#7CB342" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl5"><svg viewBox="0 0 100 20"><path d="M0,10 Q50,20 100,5" stroke="#DCEDC8" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl6"><svg viewBox="0 0 100 20"><path d="M0,5 Q50,0 100,15" stroke="#99CC33" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl7"><svg viewBox="0 0 100 20"><path d="M0,15 Q50,10 100,5" stroke="#F1F8E9" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl8"><svg viewBox="0 0 100 20"><path d="M10,10 Q50,0 90,20" stroke="#8BC34A" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl9"><svg viewBox="0 0 100 20"><path d="M0,10 Q50,5 100,10" stroke="#E8F5E9" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl10"><svg viewBox="0 0 100 20"><path d="M0,0 Q50,15 100,0" stroke="#AED581" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl11"><svg viewBox="0 0 100 20"><path d="M5,5 Q55,20 95,5" stroke="#C5E1A5" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+            <div class="ingredient-svg cab-v4 cl12"><svg viewBox="0 0 100 20"><path d="M0,20 Q50,5 100,15" stroke="#689F38" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
         </div>
 
-        <!-- 素材3: 熟成カルニータス & リッチサルサ -->
-        <div class="protein-v3-group" id="meat-group">
-            <!-- 煮込まれた肉の塊 -->
-            <div class="ingredient-svg meat-v3 mv1">
-                <svg viewBox="0 0 100 80">
-                    <path d="M20,40 Q30,10 60,20 T80,45 T50,70 T20,40" fill="#4E2A14" />
-                    <path d="M25,35 Q35,20 50,25" stroke="#6D3D21" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
-                    <circle cx="45" cy="55" r="3" fill="#2A160A" />
-                </svg>
-            </div>
-            <div class="ingredient-svg meat-v3 mv2">
-                <svg viewBox="0 0 100 80">
-                    <path d="M15,30 Q40,5 85,25 T70,65 T25,55 T15,30" fill="#5D341B" />
-                    <path d="M30,50 Q50,45 70,55" stroke="#2A160A" stroke-width="2" fill="none" opacity="0.4"/>
-                </svg>
-            </div>
-            <!-- サルサソース（光沢あり） -->
-            <div class="ingredient-svg salsa-v3 sv1">
-                <svg viewBox="0 0 80 80">
-                    <path d="M40,10 C60,10 70,30 65,50 C60,70 40,75 20,65 C5,50 15,15 40,10" fill="#CE1126" />
-                    <path d="M45,20 C55,20 58,35 55,40" stroke="#FF5252" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
-                    <circle cx="35" cy="35" r="2" fill="#FFF" opacity="0.5" />
-                </svg>
-            </div>
-            <div class="ingredient-svg salsa-v3 sv2">
-                <svg viewBox="0 0 60 60">
-                    <path d="M30,5 Q55,30 30,55 Q5,30 30,5" fill="#A50E1F" />
-                </svg>
-            </div>
+        <!-- 大量のカルニータス & サルサ (8塊 + 6滴) -->
+        <div class="protein-v4-group" id="meat-group">
+            <!-- 肉 -->
+            <div class="ingredient-svg meat-v4 mv1"><svg viewBox="0 0 80 60"><path d="M10,30 Q20,10 50,15 T70,40 T40,55 T10,30" fill="#4E2A14" /><path d="M20,25 Q40,15 60,30" stroke="#6D3D21" stroke-width="3" fill="none" opacity="0.4"/></svg></div>
+            <div class="ingredient-svg meat-v4 mv2"><svg viewBox="0 0 80 60"><path d="M5,25 Q30,0 70,20 T75,50 T30,55 T5,25" fill="#5D341B" /><circle cx="40" cy="40" r="3" fill="#2A160A" opacity="0.5"/></svg></div>
+            <div class="ingredient-svg meat-v4 mv3"><svg viewBox="0 0 60 40"><path d="M10,20 Q20,5 40,10 T50,25 T30,35 T10,20" fill="#3D1C02" /></svg></div>
+            <div class="ingredient-svg meat-v4 mv4"><svg viewBox="0 0 70 50"><path d="M15,35 Q40,10 65,30 T45,45 T15,35" fill="#5D341B" /></svg></div>
+            <div class="ingredient-svg meat-v4 mv5"><svg viewBox="0 0 60 40"><path d="M5,15 Q25,5 45,20 T35,35 T5,15" fill="#4E2A14" /></svg></div>
+            <div class="ingredient-svg meat-v4 mv6"><svg viewBox="0 0 80 60"><path d="M20,40 Q40,15 70,35 T50,55 T20,40" fill="#5D341B" /></svg></div>
+            <div class="ingredient-svg meat-v4 mv7"><svg viewBox="0 0 60 40"><path d="M10,10 Q30,0 50,15 T40,35 T10,10" fill="#2A160A" /></svg></div>
+            <div class="ingredient-svg meat-v4 mv8"><svg viewBox="0 0 70 50"><path d="M5,25 Q30,10 60,30 T40,45 T5,25" fill="#5D341B" /></svg></div>
+            <!-- サルサ -->
+            <div class="ingredient-svg salsa-v4 sv1"><svg viewBox="0 0 60 60"><path d="M30,10 Q50,10 50,30 T30,50 T10,30 T30,10" fill="#CE1126" /><circle cx="25" cy="25" r="3" fill="#FFF" opacity="0.4"/></svg></div>
+            <div class="ingredient-svg salsa-v4 sv2"><svg viewBox="0 0 50 50"><path d="M25,5 Q45,25 25,45 T5,25 T25,5" fill="#B22222" /></svg></div>
+            <div class="ingredient-svg salsa-v4 sv3"><svg viewBox="0 0 40 40"><path d="M20,5 Q35,20 20,35 T5,20 T20,5" fill="#D32F2F" /></svg></div>
+            <div class="ingredient-svg salsa-v4 sv4"><svg viewBox="0 0 50 50"><path d="M25,10 Q40,10 40,25 T25,40 T10,25 T25,10" fill="#CE1126" /></svg></div>
+            <div class="ingredient-svg salsa-v4 sv5"><svg viewBox="0 0 30 30"><path d="M15,5 Q25,15 15,25 T5,15 T15,5" fill="#FF5252" opacity="0.8"/></svg></div>
+            <div class="ingredient-svg salsa-v4 sv6"><svg viewBox="0 0 40 40"><path d="M20,2 Q38,20 20,38 T2,20 T20,2" fill="#880E4F" opacity="0.6"/></svg></div>
         </div>
 
-        <div class="complete-message" id="finish-text">
-            <h2>THE MASTERPIECE</h2>
-            <p>SUN YAMATO 202 | KYOMACHIBORI TACOS</p>
+        <!-- 祝福メッセージ (最前面) -->
+        <div class="complete-message-v4" id="finish-text">
+            <h2>MASTERPIECE</h2>
+            <p>KYOMACHIBORI TACOS | SUN YAMATO 202</p>
         </div>
     </div>
 
-    <!-- Scroll Triggers -->
-    <section class="trigger-section" id="step-0"><div class="scroll-prompt-v3">SCROLL TO BUILD</div></section>
-    <section class="trigger-section" id="step-1"><div class="label-v3">01. ARTISAN TORTILLA</div></section>
-    <section class="trigger-section" id="step-2"><div class="label-v3">02. CRISPY GREENS</div></section>
-    <section class="trigger-section" id="step-3"><div class="label-v3">03. RICH CARNITAS</div></section>
-    <section class="trigger-section" id="step-4"><div class="label-v3">FINISH.</div></section>
+    <!-- UI Labels (最前面) -->
+    <div class="ui-layer">
+        <section class="trigger-section" id="step-0"><div class="scroll-prompt-v4">SCROLL TO BUILD</div></section>
+        <section class="trigger-section" id="step-1"><div class="label-v4">01. ARTISAN TORTILLA</div></section>
+        <section class="trigger-section" id="step-2"><div class="label-v4">02. CRISPY GREENS</div></section>
+        <section class="trigger-section" id="step-3"><div class="label-v4">03. CARNITAS & SALSA</div></section>
+        <section class="trigger-section" id="step-4"><div class="label-v4">FINISH.</div></section>
+    </div>
 
     <div class="back-home"><a href="index.html">BACK TO SITE</a></div>
 
